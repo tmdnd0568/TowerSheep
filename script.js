@@ -33,17 +33,17 @@ const DESTINATIONS = [
     desc: '하롱베이의 절경부터 남부의 섬 휴양까지, 길고 다채로운 나라',
     cities: [
       { id: 'danang', name: '다낭', season: '2월 ~ 8월', intro: '해변 리조트와 바나힐, 근교 호이안까지 묶어 즐기기 좋은 중부 휴양 도시.', spots: ['미케 비치', '바나힐', '호이안 올드타운', '오행산'], themes: ['휴양', '가족', '커플'] },
-      { id: 'nhatrang', name: '나트랑', season: '1월 ~ 8월', intro: '맑은 바다와 섬 호핑, 머드 스파로 유명한 남중부 해변 도시.', spots: ['나트랑 비치', '섬 호핑 투어', '머드 스파', '포나가 참탑'], themes: ['휴양', '가족'] },
-      { id: 'phuquoc', name: '푸꾸옥', season: '11월 ~ 4월', intro: '베트남 남단의 섬. 고요한 해변과 리조트 중심의 휴양에 어울리는 곳.', spots: ['사오 비치', '혼텀 케이블카', '선셋 타운', '야시장'], themes: ['휴양', '커플'] },
-      { id: 'hanoi', name: '하노이', season: '10월 ~ 12월, 3월 ~ 4월', intro: '천년 고도의 구시가지와 하롱베이로 이어지는 북부 여행의 시작점.', spots: ['호안끼엠 호수', '구시가지', '하롱베이(근교)', '문묘'], themes: ['자유여행', '커플'] },
+      { id: 'nhatrang', name: '나트랑', image: 'src/nha.jpeg', season: '1월 ~ 8월', intro: '맑은 바다와 섬 호핑, 머드 스파로 유명한 남중부 해변 도시.', spots: ['나트랑 비치', '섬 호핑 투어', '머드 스파', '포나가 참탑'], themes: ['휴양', '가족'] },
+      { id: 'phuquoc', name: '푸꾸옥', image: 'src/phu.jpeg', season: '11월 ~ 4월', intro: '베트남 남단의 섬. 고요한 해변과 리조트 중심의 휴양에 어울리는 곳.', spots: ['사오 비치', '혼텀 케이블카', '선셋 타운', '야시장'], themes: ['휴양', '커플'] },
+      { id: 'hanoi', name: '하노이', image: 'src/ha.jpeg', season: '10월 ~ 12월, 3월 ~ 4월', intro: '천년 고도의 구시가지와 하롱베이로 이어지는 북부 여행의 시작점.', spots: ['호안끼엠 호수', '구시가지', '하롱베이(근교)', '문묘'], themes: ['자유여행', '커플'] },
     ],
   },
   {
     id: 'cambodia', name: '캄보디아', en: 'CAMBODIA', image: 'src/kbda.jpeg',
     desc: '앙코르 유적이 들려주는 크메르 문명의 이야기',
     cities: [
-      { id: 'phnompenh', name: '프놈펜', season: '11월 ~ 3월', intro: '메콩강과 톤레삽강이 만나는 수도. 왕궁과 강변 산책로가 대표 명소.', spots: ['왕궁 · 실버 파고다', '국립박물관', '리버사이드'], themes: ['자유여행'] },
-      { id: 'siemreap', name: '시엠립', season: '11월 ~ 3월', intro: '앙코르와트로 향하는 관문 도시. 일출 투어와 유적 탐방의 중심지.', spots: ['앙코르와트', '앙코르톰 · 바욘', '타프롬', '펍 스트리트'], themes: ['가족', '커플', '자유여행'] },
+      { id: 'phnompenh', name: '프놈펜', image: 'src/phnompenh.jpeg', season: '11월 ~ 3월', intro: '메콩강과 톤레삽강이 만나는 수도. 왕궁과 강변 산책로가 대표 명소.', spots: ['왕궁 · 실버 파고다', '국립박물관', '리버사이드'], themes: ['자유여행'] },
+      { id: 'siemreap', name: '시엠립', image: 'src/siemreap.jpeg', season: '11월 ~ 3월', intro: '앙코르와트로 향하는 관문 도시. 일출 투어와 유적 탐방의 중심지.', spots: ['앙코르와트', '앙코르톰 · 바욘', '타프롬', '펍 스트리트'], themes: ['가족', '커플', '자유여행'] },
     ],
   },
 ];
@@ -123,6 +123,8 @@ const cityOf = (cityId) => {
 };
 const bgStyle = (country) => country.image ? `style="background-image:url('${country.image}')"` : '';
 const toneClass = (country) => country.image ? '' : `tone-${country.id}`;
+// 도시 이미지가 있으면 도시 이미지, 없으면 국가 대표 이미지
+const cityBg = (country, city) => city && city.image ? `style="background-image:url('${city.image}')"` : bgStyle(country);
 const priceText = (p) => (p == null ? '<strong>상담 시 안내</strong>' : `<strong>${p.toLocaleString('ko-KR')}원</strong> ~`);
 
 /* ---------- 3. KAKAO LINKS ---------- */
@@ -342,7 +344,7 @@ function renderPackages() {
     const loc = cityOf(p.city);
     return `
       <article class="pkg-card" style="animation-delay:${i * 60}ms">
-        <div class="pkg-card__thumb ${toneClass(loc.country)}" ${p.image ? `style="background-image:url('${p.image}')"` : bgStyle(loc.country)} role="img" aria-label="${escapeHTML(loc.city.name)} 여행 이미지">
+        <div class="pkg-card__thumb ${toneClass(loc.country)}" ${p.image ? `style="background-image:url('${p.image}')"` : cityBg(loc.country, loc.city)} role="img" aria-label="${escapeHTML(loc.city.name)} 여행 이미지">
           <span class="pkg-card__badge">${escapeHTML(p.badge)}</span>
         </div>
         <div class="pkg-card__body">
@@ -442,7 +444,7 @@ function openCity(cityId) {
   const related = PACKAGES.filter((p) => p.city === cityId);
   const siblings = country.cities.filter((c) => c.id !== cityId);
   showModal(`
-    <div class="modal__hero ${toneClass(country)}" ${bgStyle(country)}>
+    <div class="modal__hero ${toneClass(country)}" ${cityBg(country, city)}>
       <div><small>${country.en}</small><h3 id="modalTitle">${escapeHTML(city.name)}</h3></div>
     </div>
     <div class="modal__content">
@@ -476,7 +478,7 @@ function openPackage(slug) {
   const p = PACKAGES.find((x) => x.slug === slug);
   const loc = cityOf(p.city);
   showModal(`
-    <div class="modal__hero ${toneClass(loc.country)}" ${p.image ? `style="background-image:url('${p.image}')"` : bgStyle(loc.country)}>
+    <div class="modal__hero ${toneClass(loc.country)}" ${p.image ? `style="background-image:url('${p.image}')"` : cityBg(loc.country, loc.city)}>
       <div><small>${loc.country.en} · ${escapeHTML(loc.city.name)}</small><h3 id="modalTitle">${escapeHTML(p.title)}</h3></div>
     </div>
     <div class="modal__content">
