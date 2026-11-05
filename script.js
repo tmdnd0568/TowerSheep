@@ -23,7 +23,7 @@ const DESTINATIONS = [
     id: 'thailand', name: '태국', en: 'THAILAND', image: 'src/tk.jpeg',
     desc: '사원과 야시장, 에메랄드빛 바다가 공존하는 미소의 나라',
     cities: [
-      { id: 'bangkok', name: '방콕', season: '11월 ~ 2월 (건기)', intro: '왕궁과 사원, 짜오프라야 강변, 활기찬 야시장이 어우러진 태국의 수도.', spots: ['왕궁 · 왓 프라깨우', '왓 아룬', '짜오프라야 강 크루즈', '야시장'], themes: ['커플', '자유여행'] },
+      { id: 'bangkok', name: '방콕', image: 'src/tk.jpeg', season: '11월 ~ 2월 (건기)', intro: '왕궁과 사원, 짜오프라야 강변, 활기찬 야시장이 어우러진 태국의 수도.', spots: ['왕궁 · 왓 프라깨우', '왓 아룬', '짜오프라야 강 크루즈', '야시장'], themes: ['커플', '자유여행'] },
       { id: 'chiangmai', name: '치앙마이', season: '11월 ~ 2월 (건기)', intro: '산으로 둘러싸인 북부의 고도(古都). 여유로운 카페와 올드시티 산책이 매력.', spots: ['올드시티', '도이수텝', '님만해민', '선데이 마켓'], themes: ['커플', '자유여행'] },
       { id: 'pattaya', name: '파타야', season: '11월 ~ 3월', intro: '방콕 근교의 해변 휴양지. 섬 투어와 리조트 휴양을 함께 즐기기 좋은 곳.', spots: ['산호섬(꼬란)', '파타야 비치', '진리의 성전'], themes: ['휴양', '가족'] },
     ],
@@ -32,7 +32,7 @@ const DESTINATIONS = [
     id: 'vietnam', name: '베트남', en: 'VIETNAM', image: 'src/vtn.jpeg',
     desc: '하롱베이의 절경부터 남부의 섬 휴양까지, 길고 다채로운 나라',
     cities: [
-      { id: 'danang', name: '다낭', season: '2월 ~ 8월', intro: '해변 리조트와 바나힐, 근교 호이안까지 묶어 즐기기 좋은 중부 휴양 도시.', spots: ['미케 비치', '바나힐', '호이안 올드타운', '오행산'], themes: ['휴양', '가족', '커플'] },
+      { id: 'danang', name: '다낭', image: 'src/vtn.jpeg', season: '2월 ~ 8월', intro: '해변 리조트와 바나힐, 근교 호이안까지 묶어 즐기기 좋은 중부 휴양 도시.', spots: ['미케 비치', '바나힐', '호이안 올드타운', '오행산'], themes: ['휴양', '가족', '커플'] },
       { id: 'nhatrang', name: '나트랑', image: 'src/nha.jpeg', season: '1월 ~ 8월', intro: '맑은 바다와 섬 호핑, 머드 스파로 유명한 남중부 해변 도시.', spots: ['나트랑 비치', '섬 호핑 투어', '머드 스파', '포나가 참탑'], themes: ['휴양', '가족'] },
       { id: 'phuquoc', name: '푸꾸옥', image: 'src/phu.jpeg', season: '11월 ~ 4월', intro: '베트남 남단의 섬. 고요한 해변과 리조트 중심의 휴양에 어울리는 곳.', spots: ['사오 비치', '혼텀 케이블카', '선셋 타운', '야시장'], themes: ['휴양', '커플'] },
       { id: 'hanoi', name: '하노이', image: 'src/ha.jpeg', season: '10월 ~ 12월, 3월 ~ 4월', intro: '천년 고도의 구시가지와 하롱베이로 이어지는 북부 여행의 시작점.', spots: ['호안끼엠 호수', '구시가지', '하롱베이(근교)', '문묘'], themes: ['자유여행', '커플'] },
